@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Valentine 💖</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comic Sans MS', cursive;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 3em;
+    color: #8b004f;
+}
+
+p {
+    font-size: 1.4em;
+    color: #5a0033;
+    margin-bottom: 30px;
+}
+
+#yes {
+    padding: 22px 55px;
+    font-size: 2em;
+    background: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255,0,0,0.6);
+}
+
+#no {
+    padding: 8px 18px;
+    font-size: 1em;
+    background: #444;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.love-screen {
+    display: none;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.love-screen h2 {
+    font-size: 3em;
+    color: #8b004f;
+}
+
+.hearts {
+    font-size: 3em;
+    animation: float 1.5s infinite alternate;
+}
+
+.confetti span {
+    position: absolute;
+    font-size: 22px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    from { transform: translateY(-10vh); }
+    to { transform: translateY(110vh); }
+}
+
+@keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-20px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="question">
+    <h1>Shambu ❤️</h1>
+    <p>
+        Tum meri zindagi ka sabse khoobsurat hissa ho 💕<br>
+        Will you be my Valentine? 🌹
+    </p>
+    <button id="yes">YES ❤️</button>
+    <button id="no">No</button>
+</div>
+
+<div class="love-screen" id="love">
+    <h2>Thank you my love 💖</h2>
+    <p>Forever yours 💕</p>
+    <div class="hearts">💐✨❤️✨💐</div><br>
+    <img src="https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif" width="320">
+</div>
+
+<div class="confetti" id="confetti"></div>
+
+<script>
+const noBtn = document.getElementById("no");
+
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 100);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+document.getElementById("yes").onclick = () => {
+    document.getElementById("question").style.display = "none";
+    document.getElementById("love").style.display = "block";
+    startConfetti();
+};
+
+function startConfetti() {
+    const confetti = document.getElementById("confetti");
+    const emojis = ["❤️","✨","💐","💖","🌹"];
+    for(let i=0;i<50;i++){
+        let span = document.createElement("span");
+        span.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
+        span.style.left = Math.random()*100 + "vw";
+        span.style.animationDuration = (Math.random()*3 + 2) + "s";
+        confetti.appendChild(span);
+    }
+}
+</script>
+
+</body>
+</html>
